@@ -1,0 +1,46 @@
+<div class="card">
+  <div class="card-body">
+    <h4>Gestión de productos</h4>
+    <hr />
+    <button [routerLink]="['/nuevo']" class="btn btn-success btn-sm"><i class="fa fa-plus-circle"></i> Nuevo</button>
+    <br>
+    <div class="table-responsive">
+      <div *ngIf="productos ">
+        <table class="table table-bordered table-striped mt-3">
+          <thead class=" bg-primary text-white">
+            <tr>
+              <th>ID</th>
+              <th>Producto</th>
+              <th>Categoria</th>
+              <th>Precio</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr  *ngFor="let item of productos, index as i">
+              <td>{{item.id}}</td>
+              <td>{{item.productName}}</td>
+              <td>{{item.category}}</td>
+              <td>{{item.unitPrice}}</td>
+              <td>
+                <button [routerLink]="['/editar' , item.id]" class="btn btn-info btn-sm" style="margin-right: 5px;">
+                  <i class="fa fa-edit" aria-hidden="true"></i>
+                </button>
+
+                <button class="btn btn-danger btn-sm" (click)="Eliminar(item.id)">
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
+              </td>
+            </tr>
+
+            <tr *ngIf="productos.length == 0" >
+              <td colspan="5" class="text-center">No se encontraron registros</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,57 @@
+<div class="card mt-3" style="margin:auto; width: 600px;">
+  <div class="card-header bg-primary text-white">
+    <h5 class="card-text">Nuevo Producto</h5>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="miFormulario" (ngSubmit)="guardarCambios()" novalidate="">
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Nombre</label>
+        <div class="col-sm-9">
+          <input class="form-control" type="text" formControlName="productName" placeholder="Nombre del producto">
+
+          <div style="color:red;"
+            *ngIf="miFormulario.controls['productName'].invalid && (miFormulario.controls['productName'].dirty || miFormulario.controls['productName'].touched)">
+            <div *ngIf="miFormulario.controls['productName'].errors?.['required']">
+              El nombre es requerido
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Categoria:</label>
+        <div class="col-sm-9">
+          <input type="text" formControlName="category" class="form-control" placeholder="Nombre de la categoria">
+          <div style="color:red;"
+            *ngIf="miFormulario.controls['category'].invalid && (miFormulario.controls['category'].dirty || miFormulario.controls['category'].touched)">
+            <div *ngIf="miFormulario.controls['category'].errors?.['required']">
+              La categoria es requerido
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Precio</label>
+        <div class="col-sm-9">
+          <input type="number" step="0.1" formControlName="unitPrice" class="form-control" placeholder="Precio Unitario">
+
+          <div style="color:red;"
+          *ngIf="miFormulario.controls['unitPrice'].invalid && (miFormulario.controls['unitPrice'].dirty || miFormulario.controls['unitPrice'].touched)">
+          <div *ngIf="miFormulario.controls['unitPrice'].errors?.['required']">
+            El precio es requerido
+          </div>
+
+        </div>
+
+        </div>
+      </div>
+
+      <button [disabled]="!miFormulario.valid" type="submit" class="btn btn-primary btn-sm"
+        style="margin-right: 5px;">Guardar</button>
+      <button type="reset" class="btn btn-danger btn-sm">Nuevo</button>
+    </form>
+  </div>
+
+</div>
